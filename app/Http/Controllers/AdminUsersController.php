@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class AdminUsersController extends Controller
 {
@@ -14,9 +18,8 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(10);
-        $users = User::orderBy('id','desc')->get();
-        return $users;
+        $users = User::orderBy('id','desc')->paginate(20);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -26,7 +29,8 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -35,9 +39,13 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        //
+        $user = $request->all();
+        User::create($user);
+        Session::flash('flash_admin','The user has been created');
+
+        return redirect('/admin/users');
     }
 
     /**
@@ -57,9 +65,10 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     /**
@@ -69,9 +78,15 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        $input = $request->all();
+        if(empty(trim($request->password))){ $input = $request->except('password'); }
+        if(empty(trim($request->email))){ $input = $request->except('email'); }
+
+        $user->update($input);
+        Session::flash('flash_admin','The user has been updated');
+        return redirect('/admin/users');
     }
 
     /**
@@ -80,8 +95,10 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        Session::flash('flash_admin','The user has been deleted');
+        return redirect('/admin/users');
     }
 }

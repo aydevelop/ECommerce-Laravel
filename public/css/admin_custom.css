@@ -1,10 +1,14 @@
 .flash_message{
-	background-color:#004a43;
+	background-color: black;
 	display: none;
 	padding: 10px 20px;
 	position:absolute;
 	right: 40px;
 	bottom: 80px;
 	color:white;
-	border-radius: 35px; 
+	border-radius: 35px;
+}
+
+.app-sidebar__user-avatar{
+    width:40px;
 }

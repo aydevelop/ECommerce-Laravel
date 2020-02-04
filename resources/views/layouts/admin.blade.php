@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-   
+
     <!-- Open Graph Meta-->
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title>Vali Admin - Free Bootstrap 4 Admin Template < {{ Route::currentRouteName() }} > @ </title>
@@ -73,23 +73,23 @@
         </li> --}}
         <!-- User Menu-->
         {{-- <li class="dropdown">
-          <a class="app-nav__item" 
-          onclick="event.preventDefault(); 
+          <a class="app-nav__item"
+          onclick="event.preventDefault();
           document.getElementById('logout-form').submit();"
            href="#" aria-label="Open Profile Menu">
             <i class="fa fa-sign-out fa-lg"></i>
           </a>
         </li> --}}
         <li class="dropdown">
-            <a class="app-nav__item" 
+            <a class="app-nav__item"
               href="{{ URL('admin/logout') }}" aria-label="Open Profile Menu">
               <i class="fa fa-sign-out fa-lg"></i>
             </a>
          </li>
       </ul>
     </header>
-{{-- 
-    <form id="logout-form" action="{{ route('logout') }}" 
+{{--
+    <form id="logout-form" action="{{ route('logout') }}"
     mathod="POST" style="display:none">
       @csrf
     </form> --}}
@@ -97,7 +97,7 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('48.jpg') }}" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('img/avatar.png') }}" alt="User Image">
         <div>
           <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
           <p class="app-sidebar__user-designation">{{ Auth::user()->email }}</p>
@@ -119,7 +119,8 @@
             </ul>
           </li>
         @endif
-        <li><a class="app-menu__item" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>      
+        <li><a class="app-menu__item" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
+        <li><a class="app-menu__item" href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
       </ul>
     </aside>
     <main class="app-content">
@@ -185,10 +186,10 @@
       		label: "In-Progress"
       	}
       ]
-      
+
       var ctxl = $("#lineChartDemo").get(0).getContext("2d");
       var lineChart = new Chart(ctxl).Line(data);
-      
+
       var ctxp = $("#pieChartDemo").get(0).getContext("2d");
       var pieChart = new Chart(ctxp).Pie(pdata);
     </script>

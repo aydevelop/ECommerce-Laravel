@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+
     @component('admin.includes.title')
+        <a href="{{ URL('admin/users/create') }}" class="btn btn-primary mb-4 pull-right"> Create new user </a>
         Administrators / Authors
     @endcomponent
 
@@ -13,8 +15,6 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Active</th>
-                <th>Created</th>
-                <th>Updated</th>
             </tr>
         </thead>
         <tbody>
@@ -24,14 +24,12 @@
                         <td>{{ $user->id }}</td>
                         <td>
                          <a href="{{ url('/admin/users/'.$user->id.'/edit')}}">
-                                {{ $user->name }}    
+                                {{ $user->name }}
                             </a>
                         </td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role["name"] }}</td>
                         <td>{{ $user->active == 1 ? 'Yes' : 'No' }}</td>
-                        <td>{{ $user->created_at->diffForHumans() }}</td>
-                        <td>{{ $user->updated_at->diffForHumans() }}</td>
                     </tr>
                 @endforeach
             @endif

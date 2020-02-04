@@ -6,7 +6,7 @@
     @endcomponent
 
     @if(!empty($user))
-        <form method="POST" action="{{ URL("/admin/users", $user->id) }}">
+        <form method="POST" action="{{ URL('/admin/users', $user->id) }}">
             @csrf
             @method('PATCH')
 
@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label>Email</label>
-                <input value="{{ $user->email }}" type="email" class="form-control" name="email" placeholder="Enter a user email">
+                <input value="" type="email" class="form-control" name="email" placeholder="Enter a user email">
             </div>
 
             <div class="form-group">
@@ -52,12 +52,21 @@
                 Edit user
             </button>
 
+
             <div>
                 <div class="mt-4">
                     @component('admin.includes.formErrors')
                     @endcomponent
                 </div>
             </div>
+        </form>
+
+        <form  method="POST" action="{{ url('admin/users/'.$user->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-secondary">
+                User delete
+            </button>
         </form>
 
     @else

@@ -5,7 +5,7 @@
         Add Administrators / Authors
     @endcomponent
 
-    <form method="POST" action="{{ URL("/admin/users") }}">
+    <form method="POST" action="{{ URL('/admin/users') }}">
         @csrf
 
         <div class="form-group">
