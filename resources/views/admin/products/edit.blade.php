@@ -25,18 +25,7 @@
             @endif
 
             <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <div class="form-group">
-                        <label for="filename">Movie picture</label>
-                        <div>
-                            <img src=""
-                            id="profile-img-tag" width="295px" />
-                        </div>
-                        <input class="m-1" type="file" name="file" id="profile-img">
-                    </div>
-                </div>
-
-                <div class="col-sm-9 col-md-9 col-lg-9">
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="form-group">
 
                         <div class="form-group">
@@ -73,7 +62,7 @@
 
                         <button type="submit" class="btn btn-primary mt-4">
                             @if($product->id)
-                                Edit product
+                                Save changes
                             @else
                                 Create product
                             @endif
@@ -88,6 +77,30 @@
                     @endcomponent
                 </div>
             </div>
+
+            <table id="images_list" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                    @if(!empty($product->images))
+                        @foreach($product->images as $i)
+                        <tr data-id="{{ $i->id }}">
+                            <td>{{ $i->id }}</td>
+                            <td>
+                                <img width=50 src="{{ $i->path() }}" alt="" title="">
+                            </td>
+                            <td><a class="btn btn-danger" id="delete_image" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Delete</a></td>
+                            <td><input class="m-1" disabled name="images[]" value="{{ $i->name }}" id="profile-img"></td>
+                        </tr>
+                        @endforeach
+                    @endif
+              </tbody>
+            </table>
+            <button id="add_new_image" class="btn btn-primary mt-4"> Add new image </button>
         </form>
     @else
         <div>
@@ -102,81 +115,35 @@
     <script src="{{ asset('js/plugins/laravel-ckeditor/adapters/jquery.js') }}"></script>
     <script>
             $('textarea').ckeditor();
+            $(document).on("click", "a#delete_image", function (e) {
+                e.preventDefault();
+                let tr = $(this).parents('tr');
+                let id = $(this).parents('tr').data('id');
+                let url_delete = window.location.hostname + "/image/" + id;
 
-            function readURL(input){
-                if(input.files && input.files[0]){
-                    var fr = new FileReader();
-                    fr.onload = function(e){
-                        $('#profile-img-tag').attr('src', e.target.result);
+                $.ajax({
+                    url: "http://" + url_delete,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+                    },
+                    type: 'delete',
+                    success: function(result) {
+                        tr.remove();
                     }
-                    fr.readAsDataURL(input.files[0]);
-                }
-            }
-
-            $('#profile-img').change(function(){
-                readURL(this);
+                });
             });
 
+            $('#add_new_image').click(function(e){
+                e.preventDefault();
+                $('#images_list tbody').append(
+                    "<tr>" +
+                        "<td><input type='file' name='images[]' id='profile-img'></td>" +
+                    "</tr>"
+                );
+            });
     </script>
 
-            <hr>
-    <div class="row">
-        <div class="tile">
-            <div class="tile-title-w-btn">
-              <h3 class="title">Dropzone</h3>
-              <p><a class="btn btn-primary icon-btn" href="https://gitlab.com/meno/dropzone" target="_blank"><i class="fa fa-file"></i>Docs</a></p>
-            </div>
-            <div class="tile-body">
-              <p>This plugin can be used to let the user Drag and Drop files for upload in a easy way.</p>
-              <h4>Demo</h4>
-              <form class="text-center dropzone" method="POST" enctype="multipart/form-data" action="/file-upload">
-                <div class="dz-message">Drop files here or click to upload<br><small class="text-info">(This is just a dropzone demo. Selected files are not actually uploaded.)</small></div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
-    <!-- Page specific javascripts-->
-    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="js/plugins/select2.min.js"></script>
-    <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="js/plugins/dropzone.js"></script>
-    <script type="text/javascript">
-      $('#sl').on('click', function(){
-      	$('#tl').loadingBtn();
-      	$('#tb').loadingBtn({ text : "Signing In"});
-      });
-
-      $('#el').on('click', function(){
-      	$('#tl').loadingBtnComplete();
-      	$('#tb').loadingBtnComplete({ html : "Sign In"});
-      });
-
-      $('#demoDate').datepicker({
-      	format: "dd/mm/yyyy",
-      	autoclose: true,
-      	todayHighlight: true
-      });
-
-      $('#demoSelect').select2();
-    </script>
-    <!-- Google analytics script-->
-    <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
-      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      	ga('create', 'UA-72504830-1', 'auto');
-      	ga('send', 'pageview');
-      }
-    </script>
-    </div>
+    <hr>
+    <hr>
 
 @endsection

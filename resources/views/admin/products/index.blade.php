@@ -13,6 +13,7 @@
                 <th>Photo</th>
                 <th>Name</th>
                 <th>Category</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@
                         </td>
                         <td>
                             {{ $prod->category->name }}
+                        </td>
+                        <td>
+                            {{ $prod->price }}
                         </td>
                     </tr>
                 @endforeach

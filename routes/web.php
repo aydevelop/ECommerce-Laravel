@@ -16,6 +16,8 @@ Route::resource('/admin/users', 'AdminUsersController');
 Route::resource('/admin/categories', 'AdminCategoriesController');
 Route::resource('/admin/products', 'ProductsController');
 
+Route::resource('/image', 'ImageController');
+
 
 Route::get('/', function () {
 

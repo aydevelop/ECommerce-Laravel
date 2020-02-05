@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductsController extends Controller
 {
@@ -52,6 +54,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
+        $product->images;
         $categories = Category::all();
         return view('admin.products.edit', compact('product','categories'));
     }
@@ -74,9 +77,25 @@ class ProductsController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
-        $product->update($request->all());
+        if($request->hasFile('images'))
+        {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $name =  Auth::user()->id . '_' . $file->getClientOriginalName();
+                $product->images()->create(['name' => $name]);
+                $file->move('img', $name);
+            }
+        }
+
+        $images = $request->images;
+        $inputs = $request->all();
+        if(!empty($images)){
+            $inputs = $request->except(['images']);
+        }
+
+        $product->update($inputs);
         Session::flash('flash_admin','The product has been updated');
         return redirect('/admin/products');
     }
