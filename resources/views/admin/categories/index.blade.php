@@ -10,7 +10,7 @@
                 <table class="table table-striped admin_users_table">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>#</th>
                                 <th>Category name</th>
                             </tr>
                         </thead>

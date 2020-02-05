@@ -4,6 +4,7 @@ use App\Role;
 use App\User;
 use App\Order;
 use App\Product;
+use App\Callback;
 use App\Category;
 use App\OrderStatus;
 use Illuminate\Database\Seeder;
@@ -44,5 +45,8 @@ class DatabaseSeeder extends Seeder
         factory(Order::class, 10)->create()->each(function ($order) {
             $order->products()->saveMany(factory(Product::class, 5)->make());
         });
+
+        Callback::truncate();
+        factory(Callback::class, 10)->create();
     }
 }

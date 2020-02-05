@@ -17,6 +17,7 @@ Route::resource('/admin/categories', 'AdminCategoriesController');
 Route::resource('/admin/products', 'ProductsController');
 Route::resource('/image', 'ImageController');
 Route::resource('/admin/orders', 'OrderController');
+Route::resource('/admin/callbacks', 'CallbackController');
 
 
 Route::get('/', function () {

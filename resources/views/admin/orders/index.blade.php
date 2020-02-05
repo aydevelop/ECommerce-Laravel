@@ -57,6 +57,7 @@
                 let stat_id = $(this).find("input").attr("value");
                 let ord_id = $(this).find("input").data("ord-id");
                 let url_edit = window.location.protocol +'//'+ window.location.hostname + "/admin/orders/" + ord_id;
+                let el = $(this);
 
                 $.ajax({
                     url: url_edit,
@@ -65,8 +66,8 @@
                     },
                     type: 'PUT',
                     data: "status=" + stat_id,
-                    success: function(result) {
-                        alert("Status changed");
+                    error: function(result) {
+                        el.removeClass('active');
                     }
                 });
 

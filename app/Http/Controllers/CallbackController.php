@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\OrderStatus;
+use App\Callback;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CallbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['status', 'products'])->paginate(20);
-        $statuses = OrderStatus::all();
-        return view('admin.orders.index', compact('orders','statuses'));
+        $callbacks = Callback::paginate(20);
+        return view('admin.callbacks.index', compact('callbacks'));
     }
 
     /**
@@ -44,10 +42,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Callback  $callback
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Callback $callback)
     {
         //
     }
@@ -55,10 +53,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Callback  $callback
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Callback $callback)
     {
 
     }
@@ -67,23 +65,23 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param  \App\Callback  $callback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Callback $callback)
     {
-        $status = $request->status;
-        $order->update(['order_status_id' => $status]);
-        return $status;
+        $processed = $request->processed;
+        $callback->update(['processed' => $processed]);
+        return $processed;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Callback  $callback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Callback $callback)
     {
         //
     }
