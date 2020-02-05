@@ -4,7 +4,7 @@
 
     @component('admin.includes.title')
         <a href="{{ URL('admin/users/create') }}" class="btn btn-primary mb-4 pull-right"> Create new user </a>
-        Administrators / Authors
+        Users list
     @endcomponent
 
     <table class="table table-striped admin_users_table">

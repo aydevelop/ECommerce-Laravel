@@ -2,7 +2,14 @@
 
 @section('content')
     @component('admin.includes.title')
-        Edit Administrators / Authors
+        <form class="pull-right" method="POST" action="{{ url('admin/users/'.$user->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-secondary">
+                User delete
+            </button>
+        </form>
+        User editing
     @endcomponent
 
     @if(!empty($user))
@@ -61,13 +68,7 @@
             </div>
         </form>
 
-        <form  method="POST" action="{{ url('admin/users/'.$user->id) }}">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-secondary">
-                User delete
-            </button>
-        </form>
+
 
     @else
         <div>

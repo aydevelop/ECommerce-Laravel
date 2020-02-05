@@ -2,7 +2,7 @@
 
 @section('content')
     @component('admin.includes.title')
-        Add Administrators / Authors
+        Create new user
     @endcomponent
 
     <form method="POST" action="{{ URL('/admin/users') }}">

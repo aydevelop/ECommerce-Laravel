@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\User;
+use App\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->truncate();
+        Role::truncate();
         Role::create(['name'=>'Admin']);
         Role::create(['name'=>'User']);
 
+        User::truncate();
         factory(User::class, 100)->create();
+
+        Category::truncate();
+        factory(Category::class, 20)->create();
     }
 
 

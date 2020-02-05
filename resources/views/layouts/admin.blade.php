@@ -105,12 +105,7 @@
       </div>
       <ul class="app-menu">
         <li><a class="app-menu__item" href="{{ URL('/') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Site</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="{{ URL('admin/posts') }}" data-toggle="treeview"><i class="app-menu__icon fa fa-user-circle"></i><span class="app-menu__label">Posts</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="{{ URL('admin/posts') }}"><i class="icon fa fa-circle-o"></i>All Posts</a></li>
-            <li><a class="treeview-item" href="{{ URL('admin/posts/create') }}"><i class="icon fa fa-circle-o"></i>Create Post</a></li>
-          </ul>
-        </li>
+
         @if(Auth::user()->role_id=='1')
           <li class="treeview"><a class="app-menu__item" href="{{ URL('admin/posts') }}" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">All Users</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">

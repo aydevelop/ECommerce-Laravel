@@ -2,7 +2,7 @@
 	background-color: black;
 	display: none;
 	padding: 10px 20px;
-	position:absolute;
+	position:fixed;
 	right: 40px;
 	bottom: 80px;
 	color:white;
@@ -11,4 +11,8 @@
 
 .app-sidebar__user-avatar{
     width:40px;
+}
+
+.app-sidebar__user{
+    font-size: 10px;
 }
