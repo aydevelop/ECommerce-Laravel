@@ -10,7 +10,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Photo</th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -22,8 +21,6 @@
                     <tr>
                         <td>
                             {{ $prod->id }}
-                        </td>
-                        <td>
                         </td>
                         <td>
                           <a href="{{ url('admin/products/' . $prod->id) }}"> {{ $prod->name }} </a>

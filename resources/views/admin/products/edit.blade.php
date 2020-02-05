@@ -119,10 +119,10 @@
                 e.preventDefault();
                 let tr = $(this).parents('tr');
                 let id = $(this).parents('tr').data('id');
-                let url_delete = window.location.hostname + "/image/" + id;
+                let url_delete = window.location.protocol +'//'+ window.location.hostname + "/image/" + id;
 
                 $.ajax({
-                    url: "http://" + url_delete,
+                    url: url_delete,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
                     },

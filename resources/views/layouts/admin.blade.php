@@ -107,17 +107,11 @@
       <ul class="app-menu">
         <li><a class="app-menu__item" href="{{ URL('/') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Site</span></a></li>
 
-        @if(Auth::user()->role_id=='1')
-          <li class="treeview"><a class="app-menu__item" href="{{ URL('admin/posts') }}" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">All Users</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-              <li><a class="treeview-item" href="{{ URL('admin/users') }}"><i class="icon fa fa-circle-o"></i>Users</a></li>
-              <li><a class="treeview-item" href="{{ URL('admin/users/create') }}"><i class="icon fa fa-circle-o"></i>Create User</a></li>
-            </ul>
-          </li>
-        @endif
+
         <li><a class="app-menu__item" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
         <li><a class="app-menu__item" href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
         <li><a class="app-menu__item" href="{{ URL('admin/products') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Products</span></a></li>
+        <li><a class="app-menu__item" href="{{ URL('admin/orders') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Orders</span></a></li>
       </ul>
     </aside>
     <main class="app-content">

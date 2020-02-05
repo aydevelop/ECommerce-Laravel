@@ -15,8 +15,8 @@
 Route::resource('/admin/users', 'AdminUsersController');
 Route::resource('/admin/categories', 'AdminCategoriesController');
 Route::resource('/admin/products', 'ProductsController');
-
 Route::resource('/image', 'ImageController');
+Route::resource('/admin/orders', 'OrderController');
 
 
 Route::get('/', function () {
@@ -26,5 +26,4 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
