@@ -14,14 +14,12 @@
 
 Route::resource('/admin/users', 'AdminUsersController');
 Route::resource('/admin/categories', 'AdminCategoriesController');
+Route::resource('/admin/products', 'ProductsController');
 
 
 Route::get('/', function () {
 
-    if (Auth::check()) {
-        return Auth::user()->role->name;
-    }
-
+    if (Auth::check()) { return Auth::user()->role->name; }
     return view('welcome');
 });
 

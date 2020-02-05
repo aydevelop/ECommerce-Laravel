@@ -116,6 +116,7 @@
         @endif
         <li><a class="app-menu__item" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
         <li><a class="app-menu__item" href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
+        <li><a class="app-menu__item" href="{{ URL('admin/products') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Products</span></a></li>
       </ul>
     </aside>
     <main class="app-content">

@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\User;
+use App\Product;
 use App\Category;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,9 @@ class DatabaseSeeder extends Seeder
 
         Category::truncate();
         factory(Category::class, 20)->create();
+
+        Product::truncate();
+        factory(Product::class, 10)->create();
     }
 
 
