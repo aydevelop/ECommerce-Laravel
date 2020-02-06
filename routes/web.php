@@ -11,20 +11,23 @@
 |
 */
 
-
-Route::resource('/admin/users', 'AdminUsersController');
-Route::resource('/admin/categories', 'AdminCategoriesController');
-Route::resource('/admin/products', 'ProductsController');
-Route::resource('/image', 'ImageController');
-Route::resource('/admin/orders', 'OrderController');
-Route::resource('/admin/callbacks', 'CallbackController');
-
-
-Route::get('/', function () {
-
-    if (Auth::check()) { return Auth::user()->role->name; }
-    return view('welcome');
+Route::group(['middleware' => 'admin'], function () {
+    Route::resource('/admin/users', 'AdminUsersController');
+    Route::resource('/admin/categories', 'AdminCategoriesController');
+    Route::resource('/admin/products', 'ProductsController');
+    Route::resource('/image', 'ImageController');
+    Route::resource('/admin/orders', 'OrderController');
+    Route::resource('/admin/callbacks', 'CallbackController');
 });
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('register', 'AuthController@register');
+Route::post('register', 'AuthController@postRegister');
+Route::get('register/confirm/{token}', 'AuthController@confirmEmail');
+Route::get('login', 'AuthController@login')->middleware('guest');
+Route::post('login', 'AuthController@postLogin')->middleware('guest');
+Route::get('logout', 'AuthController@logout');
+
+Route::get('/', function () {
+    //return Auth::user()->role->name;
+    return view('welcome');
+});

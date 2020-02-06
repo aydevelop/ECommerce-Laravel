@@ -45,4 +45,28 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function isAdmin()
+    {
+        if($this->role->name == "Admin"){
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            $user->token = str_random(30);
+        });
+    }
+
+    public function confirmEmail()
+    {
+        $this->verified = true;
+        $this->token = null;
+        $this->save();
+    }
 }
