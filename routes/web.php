@@ -27,6 +27,13 @@ Route::get('login', 'AuthController@login')->middleware('guest');
 Route::post('login', 'AuthController@postLogin')->middleware('guest');
 Route::get('logout', 'AuthController@logout');
 
+
+Route::group(['namespace' => 'Front'], function() {
+    Route::get('products', 'HomeController@products');
+    Route::get('products/{product}', 'HomeController@product');
+});
+
+
 Route::get('/', function () {
     //return Auth::user()->role->name;
     return view('welcome');
