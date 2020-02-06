@@ -2,6 +2,21 @@
 
 @section('content')
 
+@if(isset($search_count))
+    <div>
+        Found {{$search_count}} products
+    </div>
+    <br />
+@else
+    <div style="">
+            <a href="?price_up=sort">Sort by Price ▲</a>,
+            <a href="?price_down=sort">Sort by Price ▼</a>,
+            <a href="?name_up=sort">Sort by Name ▲</a>
+            <a href="?name_down=sort">Sort by Name ▼</a>
+        </div>
+    <br>
+@endif
+
 
 <!-- Example row of columns -->
 <div class="row-fluid">
@@ -19,7 +34,7 @@
                             <div class="caption">
                                 <h3>{{ ucfirst($prod->name) }}</h3>
                                 <p>{!! Str::limit($prod->text, 140) !!}</p>
-                                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="{{ url('products').'/'.$prod->id }}" class="btn">View</a></p>
+                                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="{{ url('product').'/'.$prod->id }}" class="btn">View</a></p>
                             </div>
                             </div>
                         </li>
@@ -28,8 +43,10 @@
             @endif
         </ul>
 
-      <div class="pagination_block">
-        {{ $products->links() }}
-      </div>
+      @if(!isset($search))
+        <div class="pagination_block">
+            {{ $products->links() }}
+        </div>
+      @endif
 
 @endsection

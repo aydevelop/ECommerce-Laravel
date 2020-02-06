@@ -15,6 +15,7 @@
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/front/style.css') }}" rel="stylesheet">
 
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -26,52 +27,21 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Store Title</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="{{ url('products') }}">Home</a></li>
-
-                <li><a href="checkout.html">Checkout <span class="badge badge-important">3</span></a></li>
-                <li><a href="new.html">Order Placement</a></li>
-                <li><a href="status.html">Order Status</a></li>
-
-                <li class="dropdown">
-				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				    Categories
-				    <b class="caret"></b>
-				  </a>
-				  <ul class="dropdown-menu">
-				    <li class="nav-header">Men</li>
-				    <li><a href="list.html">Clothes</a></li>
-				    <li><a href="list.html">Shoes</a></li>
-				    <li><a href="list.html">Watches</a></li>
-				    <li><a href="list.html">Jewlery</a></li>
-				    <li class="divider"></li>
-				    <li class="nav-header">Women</li>
-				    <li><a href="list.html">Clothes</a></li>
-				    <li><a href="list.html">Shoes</a></li>
-				    <li><a href="list.html">Watches</a></li>
-				    <li><a href="list.html">Jewlery</a></li>
-				  </ul>
-				</li>
-
-                <li class="dropdown">
-				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				    Pages
-				    <span class="caret"></span>
-				  </a>
-				  <ul class="dropdown-menu">
-				    <li><a href="aboutus.html">About Us</a></li>
-				    <li><a href="contactus.html">Contact Us</a></li>
-				  </ul>
-				</li>
-
-              </ul>
+          <form method="POST" action="{{ url('search') }}" >
+            @csrf
+            <div class="input-group md-form form-sm form-2 pl-0" style="float:right">
+            <input class="form-control my-0 py-1 red-border" name="search" type="text" placeholder="Type and press enter" aria-label="Search">
+            <div class="input-group-append">
+                <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                    aria-hidden="true"></i></span>
             </div>
-          </div>
+            </div>
+          <form>
+        <h3 class="muted">Store Title</h3>
+            @include('layouts.partials.nav')
         </div><!-- /.navbar -->
+
+
       </div>
 
       <div class="container">

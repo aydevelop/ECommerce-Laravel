@@ -29,8 +29,9 @@ Route::get('logout', 'AuthController@logout');
 
 
 Route::group(['namespace' => 'Front'], function() {
-    Route::get('products', 'HomeController@products');
-    Route::get('products/{product}', 'HomeController@product');
+    Route::get('products/{category?}', 'HomeController@products');
+    Route::get('product/{product}', 'HomeController@product');
+    Route::post('search', 'HomeController@search');
 });
 
 
