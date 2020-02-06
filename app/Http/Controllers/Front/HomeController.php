@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Product;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,4 +35,14 @@ class HomeController extends Controller
 
         return view('front.home', compact('products','search_count','search'));
     }
+
+    public function checkout()
+    {
+        $userId = auth()->user()->id;
+        $cart_items = \Cart::session($userId)->getContent();
+        $total = \Cart::session($userId)->getTotal();
+
+        return view('front.checkout', compact('cart_items','total'));
+    }
+
 }

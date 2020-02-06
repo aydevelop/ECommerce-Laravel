@@ -32,6 +32,10 @@ Route::group(['namespace' => 'Front'], function() {
     Route::get('products/{category?}', 'HomeController@products');
     Route::get('product/{product}', 'HomeController@product');
     Route::post('search', 'HomeController@search');
+    Route::get('checkout', 'HomeController@checkout');
+    Route::get('card', 'CardController@index');
+    Route::post('card', 'CardController@store');
+    Route::delete('card', 'CardController@destroy');
 });
 
 

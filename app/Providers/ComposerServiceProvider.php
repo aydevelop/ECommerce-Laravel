@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +28,9 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('layouts.partials.nav', function($view) {
             $categories = Category::all();
-            $view->with(['categories' => $categories]);
+            $userId = auth()->user()->id;
+            $cart_items = \Cart::session($userId)->getContent()->count();
+            $view->with(['categories' => $categories,'cart_items' => $cart_items]);
         });
     }
 }

@@ -94,14 +94,27 @@
                         <div class="span12">
 
                             <p>
+                                <b>Category: {{ ucfirst($product->category->name ) }}</b>
+                            </p>
+
+                            <p>
                                 <b>Sale Price:  $ {{ $product->price }}</b>
                             </p>
 
-                            <form class="form-inline">
-                              <div class="control-group">
-                                    <button type="submit" class="btn btn-danger">Add to card</button>
-                              </div>
+                            <form method="POST" action="{{ url('card') }}" >
                             </form>
+                            <form method="POST" action="{{ url('card') }}" >
+                                @csrf
+                                <div class="input-group md-form form-sm form-2 pl-0" style="float:right">
+                                <input class="form-control my-0 py-1 red-border btn btn-primary" name="search" type="submit" value="Add to card">
+                                <input class="form-control my-0 py-1 red-border btn btn-primary" name="product_id" type="hidden" value="{{ $product->id }}">
+
+                                <div class="input-group-append">
+                                    <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                                        aria-hidden="true"></i></span>
+                                </div>
+                                </div>
+                            <form>
                         </div>
                     </div>
                 </div>

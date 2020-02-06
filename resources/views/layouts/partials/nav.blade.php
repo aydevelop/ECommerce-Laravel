@@ -18,7 +18,7 @@
             </ul>
         </li>
 
-        <li><a href="checkout.html">Checkout <span class="badge badge-important">3</span></a></li>
+        <li><a href="{{ url('checkout') }}">Checkout <span class="badge badge-important">{{ $cart_items }}</span></a></li>
         <li><a href="new.html">Order Placement</a></li>
         <li><a href="status.html">Order Status</a></li>
 
