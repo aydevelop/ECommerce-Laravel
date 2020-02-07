@@ -24,15 +24,15 @@
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>REGISTER</h3>
           <div class="form-group">
             <label class="control-label">Name</label>
-            <input class="form-control" name="name" type="text" placeholder="Name" autofocus>
+            <input class="form-control" value="{{ old('name') }}" name="name" type="text" placeholder="Name" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">Email</label>
-            <input class="form-control" name="email" type="text" placeholder="Email" autofocus>
+            <input class="form-control" value="{{ old('email') }}" name="email" type="text" placeholder="Email" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">PASSWORD</label>
-            <input class="form-control" name="password" type="password" placeholder="Password">
+            <input class="form-control" value="{{ old('password') }}" name="password" type="password" placeholder="Password">
           </div>
           <div class="form-group">
             <div class="utility">

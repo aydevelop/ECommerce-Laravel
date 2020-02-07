@@ -33,11 +33,9 @@
                         </td>
                         <td>
                             @if(!empty($ord->products))
-                            {{
-                                collect($ord->products)->map(function ($name) {
-                                    return $name->name;
-                                })
-                            }}
+                                @foreach($ord->products as $prod)
+                                    <a href="{{ url('product') . '/' . $prod->id }}">{{ ucfirst($prod->name) }}</a> <br>
+                                @endforeach
                             @endif
                         </td>
                     </tr>

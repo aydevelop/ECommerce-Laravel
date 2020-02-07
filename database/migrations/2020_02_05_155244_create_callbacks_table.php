@@ -16,6 +16,7 @@ class CreateCallbacksTable extends Migration
         Schema::create('callbacks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('phone');
+            $table->string('name');
             $table->integer('processed')->default(0);
             $table->timestamps();
         });

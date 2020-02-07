@@ -24,11 +24,11 @@
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
           <div class="form-group">
             <label class="control-label">Email</label>
-            <input class="form-control" name="email" type="text" placeholder="Email" autofocus>
+            <input class="form-control" name="email" value="{{ old('email') }}" type="text" placeholder="Email" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">PASSWORD</label>
-            <input class="form-control" name="password" type="password" placeholder="Password">
+            <input class="form-control" name="password" value="{{ old('password') }}"  type="password" placeholder="Password">
           </div>
           <div class="form-group">
             <div class="utility">

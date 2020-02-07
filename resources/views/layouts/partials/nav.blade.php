@@ -2,7 +2,7 @@
     <div class="navbar-inner">
     <div class="container">
         <ul class="nav">
-        <li ><a href="{{ url('products') }}">Home</a></li>
+        <li ><a href="{{ url('products') }}">Products</a></li>
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -18,9 +18,15 @@
             </ul>
         </li>
 
-        <li><a href="{{ url('checkout') }}">Checkout <span class="badge badge-important">{{ $cart_items }}</span></a></li>
-        <li><a href="new.html">Order Placement</a></li>
-        <li><a href="status.html">Order Status</a></li>
+        <li><a href="{{ url('checkout') }}">Checkout <span class="badge badge-important">@if(!empty($cart_items)) {{ $cart_items }} @endif</span></a></li>
+        <li><a href="{{ url('orders') }}">Orders</a></li>
+
+        @if (Auth::check())
+            <li><a href="{{ url('account') }}">Account</a></li>
+        @else
+            <li><a href="{{ url('login') }}">Login</a></li>
+        @endif
+
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -28,8 +34,8 @@
             <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="{{ url('contactus') }}">Contact Us</a></li>
+            <li><a href="{{ url('aboutus') }}">About Us</a></li>
             </ul>
         </li>
 

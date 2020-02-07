@@ -10,11 +10,13 @@ class Order extends Model
 {
     protected $guarded = [];
 
-    public function status(){
+    public function status()
+    {
         return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
 
-    public function products() {
+    public function products()
+    {
         return $this->belongsToMany(Product::class,'orders_products','product_id','order_id');
     }
 }

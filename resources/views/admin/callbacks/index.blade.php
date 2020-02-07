@@ -10,6 +10,7 @@
             <tr>
                 <th>#</th>
                 <th>Processed</th>
+                <th>Name</th>
                 <th>Phone</th>
             </tr>
         </thead>
@@ -26,6 +27,9 @@
                             @else
                                 <button id="btn_processed" data-id="{{ $call->id }}" class="btn btn-secondary" type="button">No</button>
                             @endif
+                        </td>
+                        <td>
+                            {{ $call->name }}
                         </td>
                         <td>
                             {{ $call->phone }}

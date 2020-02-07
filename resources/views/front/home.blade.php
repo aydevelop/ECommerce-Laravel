@@ -2,6 +2,10 @@
 
 @section('content')
 
+@if(!empty($category_name))
+    <div style="float:right; margin-right:70px"><b>Category: {{ $category_name }}</b></div>
+@endif
+
 @if(isset($search_count))
     <div>
         Found {{$search_count}} products
@@ -16,7 +20,6 @@
         </div>
     <br>
 @endif
-
 
 <!-- Example row of columns -->
 <div class="row-fluid">
@@ -34,7 +37,7 @@
                             <div class="caption">
                                 <h3>{{ ucfirst($prod->name) }}</h3>
                                 <p>{!! Str::limit($prod->text, 140) !!}</p>
-                                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="{{ url('product').'/'.$prod->id }}" class="btn">View</a></p>
+                                <p><a href="{{ url('product').'/'.$prod->id }}" class="btn">View</a></p>
                             </div>
                             </div>
                         </li>

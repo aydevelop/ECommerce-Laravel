@@ -18,7 +18,7 @@
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="{{ URL('admin/posts') }}">Vali</a>
+    <header class="app-header"><a class="app-header__logo" href="{{ URL('admin') }}">Vali</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -83,7 +83,7 @@
         </li> --}}
         <li class="dropdown">
             <a class="app-nav__item"
-              href="{{ URL('admin/logout') }}" aria-label="Open Profile Menu">
+              href="{{ URL('logout') }}" aria-label="Open Profile Menu">
               <i class="fa fa-sign-out fa-lg"></i>
             </a>
          </li>
@@ -107,12 +107,11 @@
       <ul class="app-menu">
         <li><a class="app-menu__item" href="{{ URL('/') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Site</span></a></li>
 
-
-        <li><a class="app-menu__item" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
-        <li><a class="app-menu__item" href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
-        <li><a class="app-menu__item" href="{{ URL('admin/products') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Products</span></a></li>
-        <li><a class="app-menu__item" href="{{ URL('admin/orders') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Orders</span></a></li>
-        <li><a class="app-menu__item" href="{{ URL('admin/callbacks') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Callback</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/products') or request()->is('admin/products/create')) ? 'active' : '' }}" href="{{ URL('admin/products') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Products</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/categories') or request()->is('admin/categories/*/edit')) ? 'active' : '' }}" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/users') or request()->is('admin/users/create') or request()->is('admin/users/*/edit')) ? 'active' : '' }}"  href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/orders')) ? 'active' : '' }}"  href="{{ URL('admin/orders') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Orders</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/callbacks')) ? 'active' : '' }}" href="{{ URL('admin/callbacks') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Callback</span></a></li>
       </ul>
     </aside>
     <main class="app-content">

@@ -19,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(20);
+        $products = Product::with('category')->latest()->paginate(20);
         return view('admin.products.index', compact('products'));
     }
 
@@ -41,9 +41,21 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductUpdateRequest $request)
     {
-        //
+        $product = Product::create($request->except(['images']));
+        if($request->hasFile('images'))
+        {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $name =  Auth::user()->id . '_' . $file->getClientOriginalName();
+                $product->images()->create(['name' => $name]);
+                $file->move('img', $name);
+            }
+        }
+
+        Session::flash('flash_admin','The product has been created');
+        return redirect('/admin/products');
     }
 
     /**
