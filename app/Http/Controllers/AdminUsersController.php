@@ -80,6 +80,8 @@ class AdminUsersController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
+
+
         $input = $request->all();
         if(empty(trim($request->password))){ $input = $request->except('password'); }
         if(empty(trim($request->email))){ $input = $request->except('email'); }

@@ -25,11 +25,11 @@
   <body>
 
     <div class="container">
-
       <div class="masthead">
           <form method="POST" action="{{ url('search') }}" >
             @csrf
             <div class="input-group md-form form-sm form-2 pl-0" style="float:right">
+
             <input class="form-control my-0 py-1 red-border" name="search" type="text" placeholder="Type and press enter" aria-label="Search">
             <div class="input-group-append">
                 <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
@@ -37,7 +37,8 @@
             </div>
             </div>
           <form>
-        <h3 class="muted">Store Title</h3>
+          <small id="usd" style="float:right; margin:10px; margin-right:50px">USD</small>
+            <h3 class="muted">Store Title</h3>
             @include('layouts.partials.nav')
         </div><!-- /.navbar -->
 
@@ -56,5 +57,12 @@
 
 
     @stack('scripts')
+    <script>
+        $(document).ready(function() {
+            $.getJSON("/api/currency", function(data) {
+                $("#usd").text("USD: "+data);
+            });
+        });
+    </script>
   </body>
 </html>

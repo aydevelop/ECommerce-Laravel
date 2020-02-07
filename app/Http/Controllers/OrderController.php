@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['status', 'products'])->paginate(20);
+        $orders = Order::with(['status', 'products'])->latest()->paginate(20);
         $statuses = OrderStatus::all();
         return view('admin.orders.index', compact('orders','statuses'));
     }

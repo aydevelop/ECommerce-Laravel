@@ -56,9 +56,6 @@
                         <div class="span6"></div>
                         <div class="span6"><b>
                         Total: ${{ $total }}
-                        @if(!empty($uah))
-                            (UAH: {{ $uah }})
-                        @endif
                         </b></div>
                     </div>
                 </div>

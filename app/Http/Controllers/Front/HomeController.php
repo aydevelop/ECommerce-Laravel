@@ -50,30 +50,15 @@ class HomeController extends Controller
         return view('front.home', compact('products','search_count','search'));
     }
 
-    public function getUAH($total, $key)
-    {
-        try {
-            $content = file_get_contents("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5");
-            $result  = json_decode($content);
-            $uah = (floatval($result[0]->sale) * $total);
-            $seconds = 1800;
-            Cache::set($key, $uah, $seconds);
-        } catch (Exception $e) {
-        }
-    }
-
     public function checkout()
     {
         $userId = auth()->user()->id;
         $cart_items = \Cart::session($userId)->getContent();
         $total = \Cart::session($userId)->getTotal();
 
-        $uah = 0.0;
         $key = "uah";
         if(Cache::has($key)){ $uah = Cache::get($key); }
         else { $uah = $this->getUAH($total, $key); }
-
-        if($total==0) { $uah=0; }
         return view('front.checkout', compact('cart_items','total', 'uah'));
     }
 
