@@ -18,6 +18,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('image', 'ImageController');
     Route::resource('admin/orders', 'OrderController');
     Route::resource('admin/callbacks', 'CallbackController');
+    Route::get('admin/stat', 'HomeController@index');
+    Route::get('admin/jsonorders', 'HomeController@jsonorders');
+    Route::get('admin/jsonOrdersGroupBy/{f}', 'HomeController@jsonOrdersGroupBy');
     Route::get('admin', function () { return redirect()->to('/admin/products'); });
 });
 

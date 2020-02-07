@@ -23,10 +23,10 @@
                         <a href="{{ url('product/' . $prod->id) }}">  {{ $prod->id }} </a>
                         </td>
                         <td>
-                          <a href="{{ url('admin/products/' . $prod->id) }}"> {{ $prod->name }} </a>
+                          <a href="{{ url('admin/products/' . $prod->id) }}"> {{ ucfirst($prod->name) }} </a>
                         </td>
                         <td>
-                            {{ $prod->category->name }}
+                            {{ ucfirst($prod->category->name) }}
                         </td>
                         <td>
                             {{ $prod->price }}

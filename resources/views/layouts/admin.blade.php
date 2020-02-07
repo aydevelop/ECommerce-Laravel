@@ -108,10 +108,11 @@
         <li><a class="app-menu__item" href="{{ URL('/') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Site</span></a></li>
 
         <li><a class="app-menu__item {{ (request()->is('admin/products') or request()->is('admin/products/create')) ? 'active' : '' }}" href="{{ URL('admin/products') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Products</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/categories') or request()->is('admin/categories/*/edit')) ? 'active' : '' }}" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Categories</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/users') or request()->is('admin/users/create') or request()->is('admin/users/*/edit')) ? 'active' : '' }}"  href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Users</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/orders')) ? 'active' : '' }}"  href="{{ URL('admin/orders') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Orders</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/callbacks')) ? 'active' : '' }}" href="{{ URL('admin/callbacks') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Callback</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/categories') or request()->is('admin/categories/*/edit')) ? 'active' : '' }}" href="{{ URL('admin/categories') }}"><i class="app-menu__icon fa fa-cogs"></i><span class="app-menu__label">Categories</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/users') or request()->is('admin/users/create') or request()->is('admin/users/*/edit')) ? 'active' : '' }}"  href="{{ URL('admin/users') }}"><i class="app-menu__icon fa fa-line-chart"></i><span class="app-menu__label">Users</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/orders')) ? 'active' : '' }}"  href="{{ URL('admin/orders') }}"><i class="app-menu__icon fa fa-crop"></i><span class="app-menu__label">Orders</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/callbacks')) ? 'active' : '' }}" href="{{ URL('admin/callbacks') }}"><i class="app-menu__icon fa fa-snowflake-o"></i><span class="app-menu__label">Callback</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/stat')) ? 'active' : '' }}" href="{{ URL('admin/stat') }}"><i class="app-menu__icon fa fa-bar-chart"></i><span class="app-menu__label">Statistics</span></a></li>
       </ul>
     </aside>
     <main class="app-content">

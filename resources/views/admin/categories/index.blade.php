@@ -20,7 +20,7 @@
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>
-                                            <a href="{{ url('admin/categories/'.$category->id.'/edit') }}">{{ $category->name }}</a>
+                                            <a href="{{ url('admin/categories/'.$category->id.'/edit') }}">{{ ucfirst($category->name) }}</a>
                                         </td>
                                     </tr>
                                 @endforeach
